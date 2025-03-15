@@ -8,7 +8,7 @@ import WorkWith from "./WorkWith";
 export const Hero = ({ tkey }: { tkey: string }) => {
   const t = useTranslations(tkey);
   const TEXTS = [
-    "Linkedin",
+    "LinkedIn",
     "Instagram",
     "Facebook",
     "TikTok",
@@ -51,10 +51,10 @@ export const Hero = ({ tkey }: { tkey: string }) => {
                 height={178}
               />
             ),
-            linkedin: () => (
+            LinkedIn: () => (
               <Image
                 src="/static/linkedin.svg"
-                alt="Linkedin"
+                alt="LinkedIn"
                 className="w-36 md:w-40 lg:w-56 inline-block mx-1 mb-[8px]"
                 width={800}
                 height={195}
