@@ -138,6 +138,19 @@ export const pathnames: Record<string, Record<string, string>> = {
     en: "/blog/unlock-sales-lead-attribution-systemeio-pimms",
     fr: "/blog/debloque-attribution-ventes-leads-systemeio-pimms",
   },
+  "/blog/5-dynamic-link-personalization-tips-for-higher-conversions": {
+    en: "/blog/5-dynamic-link-personalization-tips-for-higher-conversions",
+    fr: "/blog/5-conseils-pour-ameliorer-les-conversions-avec-des-liens-dynamiques",
+  },
+  "/blog/from-first-click-to-conversion-understand-exactly-how-your-marketing-drives-revenue":
+    {
+      en: "/blog/from-first-click-to-conversion-understand-exactly-how-your-marketing-drives-revenue",
+      fr: "/blog/du-premier-clic-a-la-conversion-comprendre-exactement-comment-votre-marketing-genere-des-revenus",
+    },
+  "/blog/utm-tracking-for-organic-social-media-posts": {
+    en: "/blog/utm-tracking-for-organic-social-media-posts",
+    fr: "/blog/suivi-utm-pour-les-posts-organiques-sur-les-reseaux-sociaux",
+  },
 };
 
 export type AppPathnames = keyof typeof pathnames;
