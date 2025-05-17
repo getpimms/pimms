@@ -24,12 +24,28 @@ const redirects = [
     permanent: true,
   },
   {
+    source: "/guides/how-to-track-systemeio-sales-and-leads",
+    destination:
+      "/guides/how-to-track-systemeio-sales-and-leads-marketing-attribution",
+    permanent: true,
+  },
+  {
     source: "/blog/introducing-conversion-tracking",
     destination: "/blog/introducing-pimms-conversion-tracking",
     permanent: true,
   },
   {
+    source: "/blog/conversion-tracking-introduction",
+    destination: "/blog/introducing-pimms-conversion-tracking",
+    permanent: true,
+  },
+  {
     source: "/blog/no-code-guide-to-embed-tracking-cal-com",
+    destination: "/guides/how-to-track-cal-com-bookings-marketing-attribution",
+    permanent: true,
+  },
+  {
+    source: "/guides/how-to-track-cal-com-bookings",
     destination: "/guides/how-to-track-cal-com-bookings-marketing-attribution",
     permanent: true,
   },
@@ -41,7 +57,18 @@ const redirects = [
     permanent: true,
   },
   {
+    source: "/blog/referrer-vs-utm-vs-fingerprinting",
+    destination:
+      "/blog/referrer-vs-utm-vs-fingerprinting-where-a-click-came-from",
+    permanent: true,
+  },
+  {
     source: "/blog/setup-stripe-payments-tracking-with-pimms-on-any-website",
+    destination: "/guides/how-to-track-stripe-sales-marketing-attribution",
+    permanent: true,
+  },
+  {
+    source: "/guides/how-to-track-stripe-sales",
     destination: "/guides/how-to-track-stripe-sales-marketing-attribution",
     permanent: true,
   },
@@ -52,6 +79,11 @@ const redirects = [
   },
   {
     source: "/blog/start-with-iclosed-and-zapier",
+    destination: "/guides/how-to-track-iclosed-bookings-marketing-attribution",
+    permanent: true,
+  },
+  {
+    source: "/guides/how-to-track-iclosed-bookings",
     destination: "/guides/how-to-track-iclosed-bookings-marketing-attribution",
     permanent: true,
   },
@@ -126,6 +158,12 @@ const redirects = [
     permanent: true,
   },
   {
+    source: "/fr/guides/comment-suivre-ventes-et-leads-systemeio",
+    destination:
+      "/fr/guides/comment-suivre-ventes-et-leads-systemeio-attribution-marketing",
+    permanent: true,
+  },
+  {
     source: "/fr/blog/deep-links-vs-universal-links-quelle-difference",
     destination:
       "/fr/blog/deep-links-vs-universal-links-quelle-est-la-difference",
@@ -133,6 +171,12 @@ const redirects = [
   },
   {
     source: "/fr/blog/demarrer-avec-iclosed-et-zapier",
+    destination:
+      "/fr/guides/comment-suivre-reservations-iclosed-attribution-marketing",
+    permanent: true,
+  },
+  {
+    source: "/fr/guides/comment-suivre-reservations-iclosed",
     destination:
       "/fr/guides/comment-suivre-reservations-iclosed-attribution-marketing",
     permanent: true,
