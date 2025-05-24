@@ -5,9 +5,9 @@ interface AvatarProps {
 
 export function Avatar({ initials, index }: AvatarProps) {
   const colors = [
-    "bg-purple-600", // First avatar
-    "bg-blue-600", // Second avatar
-    "bg-blue-700", // Third avatar
+    "bg-[#3970ff]", // First avatar
+    "bg-[#3970ff]/80", // Second avatar
+    "bg-[#08272E]" // Third avatar
   ];
 
   return (

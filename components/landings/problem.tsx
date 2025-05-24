@@ -1,133 +1,139 @@
 import { H2 } from "../base/h2";
 import { Paragraph } from "../base/paragraph";
 import { useTranslations } from "next-intl";
-import { Section } from "../base/section";
-import { CircleX, X } from "lucide-react";
-import Image from "next/image";
-import { List, ListItem } from "../base/list";
+import { X, AlertCircle } from "lucide-react";
 import { Label } from "../base/label";
+import { Section } from "../base/section";
 
-export const Problem = ({
-  tkey,
-  showSecondSection = false,
-}: {
-  tkey: string;
-  showSecondSection?: boolean;
-}) => {
+export const Problem = ({ tkey, showSecondSection = false }: { tkey: string; showSecondSection?: boolean }) => {
   const t = useTranslations(tkey);
 
   return (
-    <div className="my-12">
-      <Label className="mb-6 mx-auto w-fit bg-[#FFEAF1] text-[#E0004B] py-1.5 flex items-center justify-center gap-2 uppercase px-4 text-sm">
-        <CircleX className="w-4 h-4" />
-        {t("problem.title")}
-      </Label>
-      <div className="w-11/12 mx-auto">
-        <H2 className="mx-auto mb-4 text-center">
+    <Section id="problem">
+      {/* Header Section */}
+      <div className="text-center mb-12">
+        <div className="inline-flex items-center justify-center mb-6">
+          <Label className="bg-gray-100 text-gray-900 py-2 px-4 flex items-center justify-center gap-2 uppercase text-sm font-bold">
+            <AlertCircle className="w-5 h-5" />
+            {t("problem.title")}
+          </Label>
+        </div>
+        <H2>
           {t.rich("problem.heading", {
-            logo: () => (
-              <Image
-                src="/static/logo.svg"
-                alt="pim.ms"
-                className="w-20 sm:w-24 inline-block mb-[2px] mx-0.5"
-                width={1000}
-                height={179}
-              />
-            ),
-            strong: (chunks) => (
-              <span className="text-[#3970ff]">{chunks}</span>
-            ),
+            strong: (chunks) => <span className="text-blue-600">{chunks}</span>
           })}
         </H2>
       </div>
-      <Section
-        id="probleme"
-        className="bg-card rounded-3xl border-[6px] border-neutral-100 px-4 md:px-8 mt-8 flex flex-col lg:flex-row gap-12 lg:gap-4 items-center"
-      >
-        <div className="w-full lg:w-3/5">
-          <Paragraph>{t("problem.description")}</Paragraph>
-          <List className="gap-6 mt-4">
-            <ListItemWrapper
-              title={t.rich("problem.more.title1", {
-                strong: (chunks) => <strong>{chunks}</strong>,
-              })}
-              icon={<X className="w-6 h-6" />}
-              variant="alert"
-            />
-            <ListItemWrapper
-              title={t.rich("problem.more.title2", {
-                strong: (chunks) => <strong>{chunks}</strong>,
-              })}
-              icon={<X className="w-6 h-6" />}
-              variant="alert"
-            />
-            <ListItemWrapper
-              title={t.rich("problem.more.title3", {
-                strong: (chunks) => <strong>{chunks}</strong>,
-              })}
-              icon={<X className="w-6 h-6" />}
-              variant="alert"
-            />
-          </List>
+      {/* Main Problem Section */}
+      <div className="bg-white rounded-3xl border border-gray-200">
+        <div className="p-8">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+            {/* Content Section */}
+            <div className="lg:col-span-3 space-y-6">
+              <div className="inline-flex items-center gap-2 text-gray-600 font-semibold text-sm uppercase tracking-wider mb-4">
+                <div className="w-8 h-[2px] bg-gray-600"></div>
+                {t("problem.without_pimms")}
+                <div className="w-8 h-[2px] bg-gray-600"></div>
+              </div>
+              <Paragraph className="text-lg text-gray-600 leading-relaxed">{t("problem.description")}</Paragraph>
+              <div className="space-y-4">
+                <ProblemItem
+                  title={t.rich("problem.more.title1", {
+                    strong: (chunks) => <strong className="text-gray-900">{chunks}</strong>
+                  })}
+                  icon={<X className="w-5 h-5 text-gray-600" />}
+                  variant="alert"
+                />
+                <ProblemItem
+                  title={t.rich("problem.more.title2", {
+                    strong: (chunks) => <strong className="text-gray-900">{chunks}</strong>
+                  })}
+                  icon={<X className="w-5 h-5 text-gray-600" />}
+                  variant="alert"
+                />
+                <ProblemItem
+                  title={t.rich("problem.more.title3", {
+                    strong: (chunks) => <strong className="text-gray-900">{chunks}</strong>
+                  })}
+                  icon={<X className="w-5 h-5 text-gray-600" />}
+                  variant="alert"
+                />
+              </div>
+            </div>
+            {/* Video Section */}
+            <div className="lg:col-span-2">
+              <video autoPlay loop muted playsInline className="w-full h-auto object-cover border border-gray-200">
+                <source src="https://assets.pimms.io/too-many-step-paypal.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
         </div>
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full lg:w-2/5 h-full object-cover z-0 pointer-events-none rounded-3xl border-[6px] border-neutral-100"
-        >
-          <source
-            src="https://assets.pimms.io/too-many-step-paypal.mp4"
-            type="video/mp4"
-          />
-        </video>
-      </Section>
-
+      </div>
+      {/* Second Section */}
       {showSecondSection && (
-        <Section className="bg-card rounded-3xl border-[6px] border-neutral-100 px-4 md:px-8 mt-8">
-          <Paragraph>{t("problem.description2")}</Paragraph>
-          <List className="gap-6 mt-4">
-            <ListItemWrapper
-              title={t.rich("problem.more2.title1", {
-                strong: (chunks) => <strong>{chunks}</strong>,
-              })}
-              icon={<X className="w-6 h-6" />}
-              variant="alert"
-            />
-            <ListItemWrapper
-              title={t.rich("problem.more2.title2", {
-                strong: (chunks) => <strong>{chunks}</strong>,
-              })}
-              icon={<X className="w-6 h-6" />}
-              variant="alert"
-            />
-            <ListItemWrapper
-              title={t.rich("problem.more2.title3", {
-                strong: (chunks) => <strong>{chunks}</strong>,
-              })}
-              icon={<X className="w-6 h-6" />}
-              variant="alert"
-            />
-          </List>
-        </Section>
+        <div className="mt-12">
+          <div className="bg-white border border-gray-200 p-8 rounded-3xl">
+            <div className="max-w-4xl mx-auto">
+              <div className="inline-flex items-center gap-2 text-gray-600 font-semibold text-sm uppercase tracking-wider mb-6">
+                <div className="w-8 h-[2px] bg-gray-600"></div>
+                {t("problem.without_pimms")}
+                <div className="w-8 h-[2px] bg-gray-600"></div>
+              </div>
+              <Paragraph className="text-lg text-gray-600 leading-relaxed mb-8">{t("problem.description2")}</Paragraph>
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <ProblemItem
+                  title={t.rich("problem.more2.title1", {
+                    strong: (chunks) => <strong className="text-gray-900">{chunks}</strong>
+                  })}
+                  icon={<X className="w-5 h-5 text-gray-600" />}
+                  variant="alert"
+                  compact
+                />
+                <ProblemItem
+                  title={t.rich("problem.more2.title2", {
+                    strong: (chunks) => <strong className="text-gray-900">{chunks}</strong>
+                  })}
+                  icon={<X className="w-5 h-5 text-gray-600" />}
+                  variant="alert"
+                  compact
+                />
+                <ProblemItem
+                  title={t.rich("problem.more2.title3", {
+                    strong: (chunks) => <strong className="text-gray-900">{chunks}</strong>
+                  })}
+                  icon={<X className="w-5 h-5 text-gray-600" />}
+                  variant="alert"
+                  compact
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       )}
-    </div>
+    </Section>
   );
 };
 
-const ListItemWrapper = ({
+const ProblemItem = ({
   title,
   icon,
-  variant,
+  compact = false
 }: {
   title: string | React.ReactNode;
   icon?: React.ReactNode;
-  variant?: "alert" | "success";
+  compact?: boolean;
+  variant?: "default" | "alert";
 }) => {
   return (
-    <ListItem className="gap-4" icon={icon} variant={variant} size="lg">
-      <Paragraph className="text-[#08272E] font-normal">{title}</Paragraph>
-    </ListItem>
+    <div
+      className={`rounded-xl flex items-start gap-4 p-4 bg-gray-50 border border-gray-200 ${compact ? "md:col-span-1" : ""}`}
+    >
+      <div className="rounded-full flex-shrink-0 w-8 h-8 bg-gray-100 flex items-center justify-center mt-0.5">
+        {icon}
+      </div>
+      <Paragraph className={`text-gray-900 font-medium flex-1 leading-relaxed ${compact ? "text-sm" : ""}`}>
+        {title}
+      </Paragraph>
+    </div>
   );
 };

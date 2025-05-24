@@ -59,9 +59,20 @@ _"UTM parameters are case sensitive. 'Facebook' and 'facebook' will appear in yo
 
 Here are some common UTM mistakes and how to address them:
 
-- **Duplicate Parameters:** If a URL contains duplicate parameters, such as `example.com/?utm_source=facebook&utm_medium=social&utm_source=instagram`, only the last source (instagram) will be recorded in GA4 [\[6\]](https://www.optimizesmart.com/ga4-utm-parameters-not-working-here-is-how-to-fix-it).
+- **Duplicate Parameters:** If a URL contains duplicate parameters, such as 
+
+```
+example.com/?utm_source=facebook&utm_medium=social&utm_source=instagram
+```
+
+only the last source (instagram) will be recorded in GA4 [\[6\]](https://www.optimizesmart.com/ga4-utm-parameters-not-working-here-is-how-to-fix-it).
+
 - **Formatting Issues:** Missing ampersands between parameters can disrupt tracking. The correct format is:  
-  `example.com/?utm_source=google&utm_medium=cpc&utm_campaign=spring_sale` [\[6\]](https://www.optimizesmart.com/ga4-utm-parameters-not-working-here-is-how-to-fix-it).
+
+```
+example.com/?utm_source=google&utm_medium=cpc&utm_campaign=spring_sale
+```
+
 - **Internal Link Tracking:** Avoid using UTMs for internal navigation, as this can break session tracking and distort your data [\[5\]](https://impact.com/commerce-content/6-mistakes-publishers-make-with-utm-tracking).
 
 Platforms like [PIMMS](https://pimms.io/) offer real-time analytics and tools to catch these errors, ensuring consistent UTM formatting and naming. By addressing these common pitfalls, marketers can maintain accurate tracking and make better-informed decisions.

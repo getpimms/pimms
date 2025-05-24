@@ -26,23 +26,19 @@ export default function Home() {
   const tcommon = useTranslations("landing.common");
   return (
     <>
-      <div className="bg-background-secondary text-foreground w-11/12 mx-auto">
-        <Header tkey={tkey} />
+      <Header tkey={tkey} />
+      <div className="bg-background-secondary text-foreground w-11/12 mx-auto items-center flex flex-col">
         <Avatars tkey={tkey} />
         <Hero tkey={tkey} />
         <CtaButtonBig
           type="sales"
-          className="py-3 top-[-12px]"
+          className="py-3 my-2 w-full md:w-fit mx-auto"
           value={tcommon.rich("cta.main", {
             fast: () => <Zap size={32} fill="currentColor" />,
-            large: (chunks) => (
-              <span className="hidden md:block">{chunks}</span>
-            ),
+            large: (chunks) => <span className="hidden md:block">{chunks}</span>
           })}
         />
-        <div className="text-xs text-muted-foreground text-center font-semibold">
-          {tcommon("cta.bottom")}
-        </div>
+        <div className="text-xs text-muted-foreground text-center font-semibold">{tcommon("cta.bottom")}</div>
         <ImageSlide />
         {/* <VideoSlide tkey={tkey} /> */}
       </div>

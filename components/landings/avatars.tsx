@@ -5,48 +5,26 @@ export const Avatars = ({ tkey }: { tkey: string }) => {
   const t = useTranslations(tkey);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-2 my-2 scale-80 sm:scale-100 sm:my-6">
+    <div className="flex flex-col items-center justify-center gap-2 mt-10">
       <li className="flex items-center gap-2 pt-2">
         <AvatarsLaurier direction="left" />
         <div className="flex flex-col items-center justify-center select-none cursor-default">
           <div className="flex -space-x-2 overflow-hidden">
-            <Avatar
-              src={t("hero.avatars.avatar1.image")}
-              alt={t("hero.avatars.avatar1.name")}
-            />
-            <Avatar
-              src={t("hero.avatars.avatar2.image")}
-              alt={t("hero.avatars.avatar2.name")}
-            />
-            <Avatar
-              src={t("hero.avatars.avatar3.image")}
-              alt={t("hero.avatars.avatar3.name")}
-            />
-            <Avatar
-              src={t("hero.avatars.avatar4.image")}
-              alt={t("hero.avatars.avatar4.name")}
-            />
-            <Avatar
-              src={t("hero.avatars.avatar5.image")}
-              alt={t("hero.avatars.avatar5.name")}
-            />
+            <Avatar src={t("hero.avatars.avatar1.image")} alt={t("hero.avatars.avatar1.name")} />
+            <Avatar src={t("hero.avatars.avatar2.image")} alt={t("hero.avatars.avatar2.name")} />
+            <Avatar src={t("hero.avatars.avatar3.image")} alt={t("hero.avatars.avatar3.name")} />
+            <Avatar src={t("hero.avatars.avatar4.image")} alt={t("hero.avatars.avatar4.name")} />
+            <Avatar src={t("hero.avatars.avatar5.image")} alt={t("hero.avatars.avatar5.name")} />
           </div>
         </div>
         <AvatarsLaurier direction="right" />
       </li>
-
-      <div className="text-center text-zinc-500 text-[0.7rem] font-semibold leading-3 tracking-tight max-w-[14rem] uppercase">
-        {t("hero.avatars.title")}
-      </div>
+      <div className="text-sm text-[#5C5B61] font-medium">{t("hero.avatars.title")}</div>
     </div>
   );
 };
 
-export const AvatarsLaurier = ({
-  direction,
-}: {
-  direction: "left" | "right";
-}) => {
+export const AvatarsLaurier = ({ direction }: { direction: "left" | "right" }) => {
   return (
     <svg
       width="18"

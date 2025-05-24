@@ -1,13 +1,23 @@
-import { ReactNode } from "react";
+import { ReactNode, use } from "react";
 import BlogLayoutHero from "@/components/blog/blog-layout-hero";
+import { Section } from "@/components/base/section";
 
-export default function BlogLayout({ children }: { children: ReactNode }) {
+type Props = {
+  params: Promise<{ slug: string }>;
+  children: ReactNode;
+};
+
+export default function BlogLayout({ params, children }: Props) {
+  const { slug } = use(params);
+
   return (
     <>
-      <BlogLayoutHero />
-      <div className="grid grid-cols-1 gap-0.5 sm:grid-cols-2 lg:grid-cols-3 mx-auto max-w-5xl rounded-2xl overflow-hidden ring-[6px] ring-[#F2F3F5] my-10 bg-[#F2F3F5]">
-        {children}
-      </div>
+      <BlogLayoutHero slug={slug} />
+
+      {/* Blog grid container */}
+      <Section className="py-12 md:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">{children}</div>
+      </Section>
     </>
   );
 }
