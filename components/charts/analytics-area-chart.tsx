@@ -28,7 +28,7 @@ export default function AnalyticsAreaChart({
   }[];
   tkey?: string;
 }) {
-  const tcommon = useTranslations("landing.common");
+  const tcommon = useTranslations("landing");
 
   const RESOURCE_LABELS = {
     clicks: tcommon("analytics_chart.clicks"),

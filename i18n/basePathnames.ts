@@ -3,11 +3,15 @@ export const basePathnames = {
     en: "/",
     fr: "/"
   },
-  "/solutions/youtube": {
+  "/landings/home": {
+    en: "/",
+    fr: "/"
+  },
+  "/landings/youtube": {
     en: "/solutions/deep-links-youtube-channel",
     fr: "/solutions/deep-links-chaine-youtube"
   },
-  "/solutions/amazon": {
+  "/landings/amazon": {
     en: "/solutions/deep-links-amazon",
     fr: "/solutions/deep-links-amazon"
   },

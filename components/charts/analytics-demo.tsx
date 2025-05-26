@@ -13,7 +13,7 @@ type Tab = {
 };
 
 export const AnalyticsDemo = ({ tkey, showConversions = true }: { tkey: string; showConversions?: boolean }) => {
-  const tcommon = useTranslations("landing.common");
+  const tcommon = useTranslations("landing");
   const RESOURCE_LABELS = {
     clicks: tcommon("analytics_chart.clicks"),
     leads: tcommon("analytics_chart.leads"),

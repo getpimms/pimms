@@ -74,18 +74,18 @@ export const Footer = ({
                 <ul className="space-y-3">
                   <li>
                     <Link
-                      href={getCanonicalLink(locale, "/solutions/youtube")}
-                      className="text-[#5C5B61] hover:text-[#3970ff] transition-colors duration-200 text-sm"
+                      href={getCanonicalLink(locale, "/landings/youtube")}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      {t("footer.solutions.youtube")}
+                      YouTube
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href={getCanonicalLink(locale, "/solutions/amazon")}
-                      className="text-[#5C5B61] hover:text-[#3970ff] transition-colors duration-200 text-sm"
+                      href={getCanonicalLink(locale, "/landings/amazon")}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      {t("footer.solutions.amazon")}
+                      Amazon
                     </Link>
                   </li>
                 </ul>

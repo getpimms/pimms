@@ -11,7 +11,7 @@ const getFaviconUrl = (url: string) => {
 };
 
 export const FilterFeature = ({}: { tkey: string }) => {
-  const tcommon = useTranslations("landing.common");
+  const tcommon = useTranslations("landing");
 
   const utmLabel = (
     <Label className="text-xs text-left capitalize font-light bg-zinc-100 text-[#08272E] border-1 border-zinc-200 ml-[-4px] mr-[-4px] px-1 rounded-sm">

@@ -51,7 +51,7 @@ const generateRingPositions = (count: number, radius: number) => {
 };
 
 const LogosCircle: React.FC = () => {
-  const tcommon = useTranslations("landing.common");
+  const tcommon = useTranslations("landing");
 
   // Outer ring
   const outerCount = 13; // # of logos in outer ring

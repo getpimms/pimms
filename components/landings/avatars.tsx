@@ -1,8 +1,38 @@
-import { Avatar } from "@/components/base/avatar";
+import Image from "next/image";
+import { ReactNode } from "react";
 import { useTranslations } from "next-intl";
 
-export const Avatars = ({ tkey }: { tkey: string }) => {
-  const t = useTranslations(tkey);
+interface AvatarsProps {
+  children?: ReactNode;
+}
+
+export const Avatars = ({ children }: AvatarsProps) => {
+  // Always use home avatars since they're shared across all landing pages
+  const t = useTranslations("landing.hero");
+
+  // Get avatars from translations
+  const avatars = [
+    {
+      name: t("avatars.avatar1.name"),
+      image: t("avatars.avatar1.image")
+    },
+    {
+      name: t("avatars.avatar2.name"),
+      image: t("avatars.avatar2.image")
+    },
+    {
+      name: t("avatars.avatar3.name"),
+      image: t("avatars.avatar3.image")
+    },
+    {
+      name: t("avatars.avatar4.name"),
+      image: t("avatars.avatar4.image")
+    },
+    {
+      name: t("avatars.avatar5.name"),
+      image: t("avatars.avatar5.image")
+    }
+  ];
 
   return (
     <div className="flex flex-col items-center justify-center gap-2 mt-10">
@@ -10,16 +40,20 @@ export const Avatars = ({ tkey }: { tkey: string }) => {
         <AvatarsLaurier direction="left" />
         <div className="flex flex-col items-center justify-center select-none cursor-default">
           <div className="flex -space-x-2 overflow-hidden">
-            <Avatar src={t("hero.avatars.avatar1.image")} alt={t("hero.avatars.avatar1.name")} />
-            <Avatar src={t("hero.avatars.avatar2.image")} alt={t("hero.avatars.avatar2.name")} />
-            <Avatar src={t("hero.avatars.avatar3.image")} alt={t("hero.avatars.avatar3.name")} />
-            <Avatar src={t("hero.avatars.avatar4.image")} alt={t("hero.avatars.avatar4.name")} />
-            <Avatar src={t("hero.avatars.avatar5.image")} alt={t("hero.avatars.avatar5.name")} />
+            {avatars.map((avatar, index) => (
+              <div
+                key={index}
+                className="relative w-8 h-8 rounded-full border-2 border-white overflow-hidden"
+                style={{ zIndex: avatars.length - index }}
+              >
+                <Image src={avatar.image} alt={avatar.name} fill className="object-cover" sizes="32px" />
+              </div>
+            ))}
           </div>
         </div>
         <AvatarsLaurier direction="right" />
       </li>
-      <div className="text-sm text-[#5C5B61] font-medium">{t("hero.avatars.title")}</div>
+      {children && <div className="text-sm text-[#5C5B61] font-medium">{children}</div>}
     </div>
   );
 };

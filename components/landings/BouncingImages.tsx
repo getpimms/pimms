@@ -4,17 +4,32 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
+interface BouncingImagesProps {
+  tkey?: string;
+}
+
 /**
  * Demonstrates two images overlapping in normal flow.
  * Every 3s, they both shrink + move apart, swap z-index,
  * then scale back up to overlap again.
  */
-export default function BouncingImages({ tkey }: { tkey: string }) {
+export default function BouncingImages({ tkey = "landing" }: BouncingImagesProps) {
   const t = useTranslations(tkey);
-
   const [frontImage, setFrontImage] = useState(0);
   // Tracks the current animation stage: idle | scaleDown | scaleUp
   const [swapStage, setSwapStage] = useState<"idle" | "scaleDown" | "scaleUp">("idle");
+
+  // Get images from translations
+  const images = {
+    image1: {
+      src: t("free_offer.images.1"),
+      alt: t("free_offer.images.alt1")
+    },
+    image2: {
+      src: t("free_offer.images.2"),
+      alt: t("free_offer.images.alt2")
+    }
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -45,7 +60,7 @@ export default function BouncingImages({ tkey }: { tkey: string }) {
     switch (swapStage) {
       case "scaleDown":
         // Shrink + shift left
-        return "scale-90 -translate-x-8";
+        return "scale-90 -translate-x-4";
       case "scaleUp":
         // Return to original position + size
         return "scale-100 translate-x-0";
@@ -59,7 +74,7 @@ export default function BouncingImages({ tkey }: { tkey: string }) {
     switch (swapStage) {
       case "scaleDown":
         // Shrink + shift right
-        return "scale-90 translate-x-8";
+        return "scale-90 translate-x-4";
       case "scaleUp":
         // Return to original position + size
         return "scale-100 translate-x-0";
@@ -69,26 +84,38 @@ export default function BouncingImages({ tkey }: { tkey: string }) {
   };
 
   return (
-    <div className="relative flex items-start w-full mb-16">
+    <div className="relative flex items-start justify-center w-full max-w-md mx-auto">
       <div
         className={`
-          relative border border-gray-200 mr-[-40px] sm:mr-[-60px] rounded-xl bg-white
-          transition-all duration-300 overflow-hidden
+          relative border border-gray-200 mr-[-20px] sm:mr-[-30px] rounded-xl bg-white
+          transition-all duration-300 overflow-hidden w-48 sm:w-56
           ${frontImage === 0 ? "z-10" : "z-0"} 
           ${image1Transforms()}
         `}
       >
-        <Image src={t("images.1")} alt={t("images.alt1")} width={1200} height={1303} className="object-cover" />
+        <Image
+          src={images.image1.src}
+          alt={images.image1.alt}
+          width={400}
+          height={434}
+          className="object-cover w-full h-auto"
+        />
       </div>
       <div
         className={`
           relative border border-gray-200 rounded-xl bg-white
-          transition-all duration-300 top-[40px] sm:top-[60px] overflow-hidden
+          transition-all duration-300 top-[20px] sm:top-[30px] overflow-hidden w-48 sm:w-56
           ${frontImage === 1 ? "z-10" : "z-0"}
           ${image2Transforms()}
         `}
       >
-        <Image src={t("images.2")} alt={t("images.alt2")} width={1200} height={1303} className="object-cover" />
+        <Image
+          src={images.image2.src}
+          alt={images.image2.alt}
+          width={400}
+          height={434}
+          className="object-cover w-full h-auto"
+        />
       </div>
     </div>
   );

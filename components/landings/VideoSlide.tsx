@@ -1,11 +1,14 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import Player from "@vimeo/player";
-import { useTranslations } from "next-intl";
 import { Section } from "@/components/base/section";
 
-const VideoSlide = ({ tkey }: { tkey: string }) => {
-  const t = useTranslations(tkey);
+interface VideoSlideProps {
+  src: string;
+  cover: string;
+}
+
+const VideoSlide = ({ src, cover }: VideoSlideProps) => {
   const [coverVisible, setCoverVisible] = useState(true);
   const [videoPlaying, setVideoPlaying] = useState(false);
   const [playerReady, setPlayerReady] = useState(false);
@@ -45,7 +48,7 @@ const VideoSlide = ({ tkey }: { tkey: string }) => {
         <div className="w-full grid grid-cols-1 grid-rows-1 aspect-video overflow-hidden">
           <iframe
             ref={iframeRef}
-            src={t("video.src")}
+            src={src}
             className={`row-start-1 col-start-1 w-full h-full transition-opacity duration-500 ${
               videoPlaying ? "opacity-100" : "opacity-0"
             }`}
@@ -67,7 +70,7 @@ const VideoSlide = ({ tkey }: { tkey: string }) => {
             }}
           >
             <video autoPlay loop muted playsInline className="w-full h-full object-cover z-0 pointer-events-none">
-              <source src={t("video.cover")} type="video/mp4" />
+              <source src={cover} type="video/mp4" />
             </video>
             <div className="absolute top-[10%] right-[10%] sm:top-auto sm:right-auto rounded-full z-10 flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-[#3970ff] ring-4 ring-[#E7EEFF]">
               <svg

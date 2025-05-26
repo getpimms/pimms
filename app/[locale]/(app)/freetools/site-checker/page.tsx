@@ -16,7 +16,7 @@ export default function SiteCheckerPage() {
     <>
       {/* Header */}
       <div className="bg-background-secondary text-foreground w-11/12 mx-auto">
-        <Header tkey="landing.site-checker" />
+        <Header />
       </div>
 
       {/* Main Content */}
