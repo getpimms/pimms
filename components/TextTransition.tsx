@@ -1,11 +1,7 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useLayoutEffect,
-  useCallback,
-} from "react";
-import { motion, AnimatePresence, Transition } from "framer-motion";
+"use client";
+
+import React, { useState, useEffect, useRef, useLayoutEffect, useCallback } from "react";
+import { motion, AnimatePresence, Transition } from "@/lib/framer-motion";
 
 type WritableCSSProperties = Exclude<
   keyof CSSStyleDeclaration,
@@ -37,7 +33,7 @@ export default function ResponsiveInlinePushText({
   springConfig = { type: "spring", stiffness: 300, damping: 30, mass: 0.2 },
   className,
   style,
-  verticalAlign = "baseline",
+  verticalAlign = "baseline"
 }: ResponsiveInlinePushTextProps) {
   const [prevIndex, setPrevIndex] = useState(activeIndex);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -64,7 +60,7 @@ export default function ResponsiveInlinePushText({
       "fontWeight",
       "fontStyle",
       "textTransform",
-      "lineHeight",
+      "lineHeight"
     ];
 
     // Clone styles safely
@@ -130,7 +126,7 @@ export default function ResponsiveInlinePushText({
         lineHeight: 1,
         visibility: isMeasured ? "visible" : "hidden",
         // Remove the CSS transition to prevent delayed resizing
-        ...style,
+        ...style
       }}
     >
       {/* Measurement element */}
@@ -156,7 +152,7 @@ export default function ResponsiveInlinePushText({
           fontFamily: "inherit",
           fontWeight: "inherit",
           fontStyle: "inherit",
-          textTransform: "inherit",
+          textTransform: "inherit"
         }}
       />
 
@@ -170,7 +166,7 @@ export default function ResponsiveInlinePushText({
           style={{
             display: "block",
             whiteSpace: "nowrap",
-            backfaceVisibility: "hidden",
+            backfaceVisibility: "hidden"
           }}
         >
           {allTexts[activeIndex]}
@@ -187,7 +183,7 @@ export default function ResponsiveInlinePushText({
               top: 0,
               left: 0,
               whiteSpace: "nowrap",
-              backfaceVisibility: "hidden",
+              backfaceVisibility: "hidden"
             }}
           >
             {allTexts[prevIndex]}

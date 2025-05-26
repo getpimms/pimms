@@ -6,15 +6,9 @@ import { use } from "react";
 import { locales } from "@/i18n/config";
 import { useLocale } from "next-intl";
 import { generatePagesMetadata, getCanonicalLink } from "@/lib/utils";
-import { H1Blog } from "@/components/base/h1";
-import { HeroSection } from "@/components/base/hero-section";
 import { Section } from "@/components/base/section";
-import { Paragraph } from "@/components/base/paragraph";
-import { Label } from "@/components/base/label";
 import Image from "next/image";
 import Link from "next/link";
-import { H2 } from "@/components/base/h2";
-import { List } from "@/components/base/list";
 import { AUTHORS } from "../../../../../constants";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
@@ -32,11 +26,17 @@ import { FaqStructuredData } from "@/components/mdx/FaqStructuredData";
 import { InfoSection } from "@/components/mdx/InfoSection";
 import { LinkCards } from "@/components/mdx/LinkCards";
 import { LinkCard } from "@/components/mdx/LinkCards";
+import { Quote } from "@/components/mdx/Quote";
+import { Steps, Step, StepCompleted } from "@/components/mdx/Steps";
+import { Highlight } from "@/components/mdx/Highlight";
 import { remarkCustomDirectives } from "@/lib/mdx/remarkCustomDirectives";
 import { Pre } from "@/components/mdx/Pre";
 import { articleFolders } from "@/i18n/config";
-import { TallyIframe } from "@/components/mdx/TallyIframe";
+import TallyIframe from "@/components/mdx/TallyIframe";
 import { BreadcrumbStructuredData } from "@/components/mdx/BreadcrumbStructuredData";
+import { Clock, ChevronRight } from "lucide-react";
+import Author from "@/components/blog/author";
+import { useTranslations } from "next-intl";
 
 export async function generateStaticParams() {
   const allParams = [];
@@ -46,7 +46,7 @@ export async function generateStaticParams() {
     allParams.push(
       ...pages.map((page) => ({
         locale,
-        slug: page.slug,
+        slug: page.slug
       }))
     );
   }
@@ -66,17 +66,11 @@ export async function generateMetadata({ params }: MetadataProps) {
     params,
     dir: "articles",
     slug,
-    metadata: post.metadata,
+    metadata: post.metadata
   });
 }
 
-function MdxLink({
-  href,
-  children,
-}: {
-  href?: string;
-  children: React.ReactNode;
-}) {
+function MdxLink({ href, children }: { href?: string; children: React.ReactNode }) {
   const locale = useLocale();
 
   if (!href) {
@@ -87,7 +81,10 @@ function MdxLink({
 
   if (isInternalLink) {
     return (
-      <Link href={getCanonicalLink(locale, href)} className="underline">
+      <Link
+        href={getCanonicalLink(locale, href)}
+        className="text-blue-600 hover:text-blue-800 underline decoration-2 underline-offset-2 transition-colors duration-200 font-medium"
+      >
         {children}
       </Link>
     );
@@ -98,7 +95,7 @@ function MdxLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="underline"
+      className="text-blue-600 hover:text-blue-800 underline decoration-2 underline-offset-2 hover:decoration-blue-800 transition-colors duration-200 font-medium inline-flex items-center gap-1"
     >
       {children}
     </a>
@@ -111,8 +108,8 @@ type Props = {
 
 const components = {
   table: ({ children }: { children: React.ReactNode }) => (
-    <div className="max-w-screen overflow-scroll">
-      <table className="w-full">{children}</table>
+    <div className="max-w-full overflow-x-auto my-4 sm:my-6 -mx-4 sm:mx-0">
+      <table className="min-w-full border-collapse border border-gray-300 text-xs sm:text-sm">{children}</table>
     </div>
   ),
   img: ({ src, alt }: { src: string; alt: string }) => (
@@ -121,43 +118,41 @@ const components = {
       alt={alt}
       width={1200}
       height={630}
-      className="rounded-xl border-[6px] border-[#F2F3F5]"
+      className="block w-full rounded-none sm:rounded-xl border-0 sm:border-4 border-gray-100 shadow-md sm:shadow-lg hover:shadow-xl transition-shadow duration-300 my-4 sm:my-6 md:my-8 -mx-4 sm:mx-0"
     />
   ),
   a: MdxLink,
   Iframe: ({ src }: { src: string }) => {
     return (
-      <div className="aspect-video w-full mb-6">
+      <div className="aspect-video w-full mb-4 sm:mb-6 md:mb-8 rounded-none sm:rounded-xl overflow-hidden border-0 sm:border-2 border-gray-200 shadow-md sm:shadow-lg -mx-4 sm:mx-0">
         <iframe src={src} className="w-full h-full" allowFullScreen />
       </div>
     );
   },
-  Faq: ({
-    question,
-    children,
-  }: {
-    question: string;
-    children: React.ReactNode;
-  }) => <Faq question={question}>{children}</Faq>,
+  Faq: ({ question, children }: { question: string; children: React.ReactNode }) => (
+    <Faq question={question}>{children}</Faq>
+  ),
   CallToAction,
   InfoSection,
   LinkCards,
   LinkCard,
+  Quote,
+  Steps,
+  Step,
+  StepCompleted,
+  Highlight,
   pre: Pre,
-  Tally: TallyIframe,
+  Tally: TallyIframe
 };
 
 export default function BlogPost({ params }: Props) {
   const { slug } = use(params);
   const locale = useLocale();
   const post = getPage(locale, articleFolders, slug);
+  const t = useTranslations("blog.post");
 
   const relatedArticles =
-    (post.metadata.related &&
-      post.metadata.related.map((slug: string) =>
-        getPage(locale, articleFolders, slug)
-      )) ||
-    [];
+    (post.metadata.related && post.metadata.related.map((slug: string) => getPage(locale, articleFolders, slug))) || [];
 
   if (!post) {
     notFound();
@@ -167,191 +162,202 @@ export default function BlogPost({ params }: Props) {
 
   return (
     <>
-      <HeroSection className="flex flex-col items-start justify-left gap-2 mb-0 md:my-0 md:mt-16">
-        <div className="flex flex-wrap gap-2 items-center mx-auto mb-6">
-          {post.metadata.categories.map((category: string) => (
-            <Link
-              key={category}
-              href={getCanonicalLink(locale, `/articles/category/${category}`)}
-            >
-              <Label className="text-sm text-left capitalize bg-white text-[#08272E] border-[3px] border-[#3970ff] px-2.5 py-1.5 cursor-pointer">
-                {category}
-              </Label>
-            </Link>
-          ))}
-          <Paragraph>{formatDate(post.metadata.updatedAt)}</Paragraph>
-        </div>
-        <H1Blog>{post.metadata.title}</H1Blog>
-        <div className="px-4 text-center mx-auto max-w-2xl">
-          <Paragraph>{post.metadata.summary}</Paragraph>
-        </div>
-      </HeroSection>
-
-      <Section
-        id="content"
-        className="w-full mx-0 sm:mx-auto relative overflow-x-hidden sm:overflow-x-visible"
-      >
-        <div className="hidden absolute top-52 h-[calc(100%-13rem)] w-full rounded-2xl bg-gradient-to-b from-[white] md:block" />
-        <div className="mx-auto w-full grid max-w-screen-lg grid-cols-4 gap-5 px-0 md:pt-10 xl:px-0">
-          <article className="bg-card w-full flex flex-col items-start gap-4 md:mt-8 rounded-3xl relative col-span-4 sm:rounded-2xl sm:border-[6px] sm:border-[#F2F3F5] md:col-span-3">
-            {post.metadata.image && (
-              <Image
-                className="aspect-[1200/630] rounded-t-xl object-cover"
-                src={post.metadata.image}
-                alt={post.metadata.title}
-                width={1200}
-                height={630}
-                priority
-              />
-            )}
-            <div
-              className={twMerge(
-                "flex flex-col w-full px-4 md:px-8 py-4 max-w-4xl mx-auto",
-                // h2: text-2xl font-bold mt-4
-                "prose prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-8",
-                // h3: text-xl font-semibold mt-4
-                "prose prose-h3:text-xl prose-h3:font-semibold prose-h3:mt-4",
-                // h4: text-lg font-medium mt-4
-                "prose prose-h4:text-lg prose-h4:font-medium prose-h4:mt-4",
-                // p: text-md md:text-lg leading-relaxed text-balance text-[#5C5B61]
-                "prose-p:text-md prose-p:leading-relaxed sm:prose-p:text-balance prose-p:text-[#5C5B61] prose-p:my-2",
-                // ul: list-disc list-inside
-                "prose-ul:list-disc prose-ul:list-inside prose-ul:my-1 prose-ul:pl-1",
-                // li: text-md md:text-lg leading-relaxed text-balance text-[#5C5B61]
-                "prose-li:leading-relaxed sm:prose-li:text-balance prose-li:text-[#5C5B61]",
-                // code: text-md md:text-lg leading-relaxed text-balance text-[#5C5B61]
-                "prose-code:text-sm prose-code:before:content-none prose-code:after:content-none prose-code:font-normal prose-code:font-mono prose-code:rounded-md prose-code:p-1",
-                // figure: p-0 m-0
-                "prose-figure:my-4"
+      {/* Header section */}
+      <Section className="py-8 sm:py-12 md:py-16 px-4 md:px-6 lg:px-8">
+        {/* Breadcrumb */}
+        <nav className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-[#5C5B61] mb-4 sm:mb-6 overflow-x-auto">
+          <Link
+            href={getCanonicalLink(locale, "/articles")}
+            className="hover:text-[#08272E] transition-colors whitespace-nowrap"
+          >
+            {t("breadcrumb.articles")}
+          </Link>
+          <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
+          {post.metadata.categories.map((category: string, index: number) => (
+            <span key={category} className="flex items-center gap-1.5 sm:gap-2">
+              <Link
+                href={getCanonicalLink(locale, `/articles/category/${category}`)}
+                className="hover:text-[#08272E] transition-colors capitalize whitespace-nowrap"
+              >
+                {category.replace("-", " ")}
+              </Link>
+              {index < post.metadata.categories.length - 1 && (
+                <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
               )}
-            >
-              <MDXRemote
-                source={post.content}
-                components={components}
-                options={{
-                  mdxOptions: {
-                    remarkPlugins: [
-                      remarkGfm,
-                      remarkDirective,
-                      remarkIframeDirective,
-                      remarkFaqDirective,
-                      remarkCtaPlaceholder,
-                      remarkCustomDirectives,
-                    ],
-                    rehypePlugins: [
-                      rehypeSlug,
-                      rehypeAutolinkHeadings,
-                      [
-                        rehypePrettyCode,
-                        {
-                          theme: "one-light",
-                          keepBackground: false,
-                        },
+            </span>
+          ))}
+        </nav>
+
+        {/* Title */}
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#08272E] mb-3 sm:mb-4 max-w-4xl">
+          {post.metadata.title}
+        </h1>
+
+        {/* Subtitle */}
+        <p className="text-base sm:text-lg text-[#5C5B61] mb-4 sm:mb-6 max-w-3xl">{post.metadata.summary}</p>
+
+        {/* Meta info */}
+        <div className="flex flex-wrap items-center gap-3 sm:gap-6 text-xs sm:text-sm text-[#5C5B61]">
+          {author && (
+            <div className="flex items-center gap-2">
+              <Author username={author.slug} size="sm" />
+            </div>
+          )}
+          <div className="flex items-center gap-1">
+            <Clock className="w-3 h-3 sm:w-4 sm:h-4" />
+            <span>{formatDate(post.metadata.publishedAt)}</span>
+          </div>
+          <span>5 {t("minRead")}</span>
+        </div>
+      </Section>
+
+      {/* Main content */}
+      <Section className="py-8 sm:py-12 md:py-16 bg-gray-50 px-4 md:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8 max-w-6xl mx-auto">
+          <article className="lg:col-span-3">
+            <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-200 p-4 sm:p-6 md:p-8 lg:p-12">
+              {post.metadata.image && (
+                <div className="mb-6 sm:mb-8 -mx-4 sm:-mx-6 md:-mx-8 lg:mx-0">
+                  <Image
+                    className="w-full rounded-none sm:rounded-xl"
+                    src={post.metadata.image}
+                    alt={post.metadata.title}
+                    width={1200}
+                    height={630}
+                    priority
+                  />
+                </div>
+              )}
+
+              <div
+                className={twMerge(
+                  "prose prose-sm sm:prose-base lg:prose-lg max-w-none",
+                  "prose-h2:text-xl sm:prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-6 sm:prose-h2:mt-8 prose-h2:mb-3 sm:prose-h2:mb-4 prose-h2:text-[#08272E]",
+                  "prose-h3:text-lg sm:prose-h3:text-xl prose-h3:font-semibold prose-h3:mt-4 sm:prose-h3:mt-6 prose-h3:mb-2 sm:prose-h3:mb-3 prose-h3:text-[#08272E]",
+                  "prose-p:text-[#5C5B61] prose-p:leading-relaxed prose-p:mb-3 sm:prose-p:mb-4",
+                  "prose-ul:my-3 sm:prose-ul:my-4 prose-ol:my-3 sm:prose-ol:my-4",
+                  "prose-li:text-[#5C5B61] prose-li:mb-1.5 sm:prose-li:mb-2",
+                  "prose-code:text-xs sm:prose-code:text-sm prose-code:px-1.5 sm:prose-code:px-2 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none",
+                  "prose-blockquote:border-l-4 prose-blockquote:border-[#3970ff] prose-blockquote:bg-gray-50 prose-blockquote:p-3 sm:prose-blockquote:p-4 prose-blockquote:my-4 sm:prose-blockquote:my-6 prose-blockquote:italic",
+                  "prose-a:text-[#3970ff] prose-a:no-underline hover:prose-a:underline",
+                  "prose-strong:font-semibold prose-strong:text-[#08272E]"
+                )}
+              >
+                <MDXRemote
+                  source={post.content}
+                  components={components}
+                  options={{
+                    mdxOptions: {
+                      remarkPlugins: [
+                        remarkGfm,
+                        remarkDirective,
+                        remarkIframeDirective,
+                        remarkFaqDirective,
+                        remarkCtaPlaceholder,
+                        remarkCustomDirectives
                       ],
-                    ],
-                  },
-                }}
-              />
+                      rehypePlugins: [
+                        rehypeSlug,
+                        rehypeAutolinkHeadings,
+                        [
+                          rehypePrettyCode,
+                          {
+                            theme: "github-light",
+                            keepBackground: false
+                          }
+                        ]
+                      ]
+                    }
+                  }}
+                />
+              </div>
             </div>
           </article>
-          <aside className="col-span-4 md:col-span-1 hidden sm:block md:mx-0 md:mt-40">
-            <div className="sticky top-0 flex flex-col max-h-[calc(100vh - 6rem)] overflow-hidden">
+
+          {/* Sidebar */}
+          <aside className="lg:col-span-1">
+            <div className="sticky top-4 sm:top-8 bg-white rounded-xl sm:rounded-2xl border border-gray-200 p-4 sm:p-6">
               {author && (
-                <div className="flex flex-col gap-y-4 py-5">
-                  <Paragraph>Written by</Paragraph>
-                  <a
-                    className="group flex items-center space-x-3"
-                    href={getCanonicalLink(
-                      locale,
-                      `/articles/author/${author.slug}`
-                    )}
-                  >
-                    <img
-                      alt={`${author.name} avatar`}
-                      loading="lazy"
-                      width="36"
-                      height="36"
-                      decoding="async"
-                      data-nimg="1"
-                      className="blur-0 rounded-full transition-all group-hover:brightness-90"
-                      src={author.image}
-                    />
-                    <div className="flex flex-col">
-                      <Paragraph className="font-medium text-[#08272E] capitalize">
-                        {author.name}
-                      </Paragraph>
-                      <Paragraph size="sm">{author.role}</Paragraph>
+                <>
+                  <div className="mb-4 sm:mb-6">
+                    <h3 className="text-xs font-semibold text-[#08272E] uppercase tracking-wide mb-3 sm:mb-4">
+                      {t("writtenBy")}
+                    </h3>
+                    <div className="flex items-center gap-3">
+                      <img
+                        alt={`${author.name} avatar`}
+                        loading="lazy"
+                        width="36"
+                        height="36"
+                        className="rounded-full w-9 h-9 sm:w-10 sm:h-10"
+                        src={author.image}
+                      />
+                      <div>
+                        <p className="text-sm sm:text-base font-semibold text-[#08272E]">{author.name}</p>
+                        <p className="text-xs sm:text-sm text-[#5C5B61]">{author.role}</p>
+                      </div>
                     </div>
-                  </a>
-                </div>
+                  </div>
+                  <hr className="border-gray-200 mb-4 sm:mb-6" />
+                </>
               )}
-              <hr className="w-full border-[3px] border-gray-100" />
-              <div className="col-span-1 self-start pb-8 pt-4 mr-4">
-                <div className="max-h-[80vh] overflow-y-auto pb-8 pr-4">
-                  <TableOfContents content={post.content} />
-                </div>
+
+              <div>
+                <h3 className="text-xs font-semibold text-[#08272E] uppercase tracking-wide mb-3 sm:mb-4">
+                  {t("tableOfContents")}
+                </h3>
+                <TableOfContents content={post.content} />
               </div>
             </div>
           </aside>
         </div>
       </Section>
-      <Section className="mx-auto w-fit">
-        <Paragraph className="text-semibold">
-          First published at: {formatDate(post.metadata.publishedAt)}
-        </Paragraph>
-      </Section>
-      <Section className="mx-auto w-fit">
-        {relatedArticles.length > 0 && (
-          <div className="flex flex-col space-y-4 py-5">
-            <H2 className="text-center">Read more</H2>
-            <List className="gap-y-6">
-              {relatedArticles.map((post) => (
-                <li key={post.slug}>
-                  <Link
-                    href={getCanonicalLink(locale, `/articles/${post.slug}`)}
-                    className="group flex flex-col items-center gap-4 sm:flex-row bg-card border-[6px] border-[#F2F3F5] rounded-2xl p-3"
-                  >
-                    <Image
-                      className="blur-0 aspect-video w-full rounded-2xl sm:w-[200px]"
-                      src={post.metadata.image}
-                      alt={post.metadata.title}
-                      width={1200}
-                      height={630}
-                      priority
-                    />
-                    <div className="group flex flex-col space-y-2">
-                      <p className="font-semibold text-gray-700 underline-offset-4 group-hover:underline">
-                        {post.metadata.title}
-                      </p>
-                      <p className="line-clamp-2 text-sm text-gray-500 underline-offset-2">
-                        {post.metadata.summary}
-                      </p>
-                      <p className="text-xs text-gray-400 underline-offset-2">
-                        {formatDate(post.metadata.updatedAt)}
-                      </p>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </List>
+
+      {relatedArticles.length > 0 && (
+        <Section className="py-8 sm:py-12 md:py-16 px-4 md:px-6 lg:px-8">
+          <div className="text-center mb-6 sm:mb-8">
+            <h2 className="text-xl sm:text-2xl font-bold text-[#08272E] mb-1.5 sm:mb-2">{t("continueReading")}</h2>
+            <p className="text-sm sm:text-base text-[#5C5B61]">{t("exploreMore")}</p>
           </div>
-        )}
-      </Section>
-      <BreadcrumbStructuredData
-        slug={slug}
-        category={post.metadata.categories[0]}
-        metadata={post.metadata}
-      />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {relatedArticles.map((post) => (
+              <Link
+                key={post.slug}
+                href={getCanonicalLink(locale, `/articles/${post.slug}`)}
+                className="group block bg-white border border-gray-200 rounded-lg sm:rounded-2xl overflow-hidden hover:border-gray-300 transition-all duration-200"
+              >
+                <div className="relative overflow-hidden">
+                  <Image
+                    className="w-full h-full object-cover aspect-[1200/630] group-hover:scale-105 transition-transform duration-200"
+                    src={post.metadata.image}
+                    alt={post.metadata.title}
+                    width={1200}
+                    height={630}
+                  />
+                </div>
+
+                <div className="p-4 sm:p-6">
+                  <h3 className="font-bold text-base sm:text-lg text-[#08272E] group-hover:text-[#3970ff] transition-colors mb-1.5 sm:mb-2">
+                    {post.metadata.title}
+                  </h3>
+                  <p className="text-[#5C5B61] line-clamp-3 mb-2 sm:mb-3 text-xs sm:text-sm">{post.metadata.summary}</p>
+                  <p className="text-xs text-[#5C5B61]">{formatDate(post.metadata.updatedAt)}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </Section>
+      )}
+
+      <BreadcrumbStructuredData slug={slug} category={post.metadata.categories[0]} metadata={post.metadata} />
       <BlogStructuredData
         type={post.dir}
         metadata={post.metadata}
         url={getCanonicalLink(locale, `/articles/${slug}`)}
         author={author}
       />
-      <FaqStructuredData
-        url={getCanonicalLink(locale, `/articles/${slug}`)}
-        faqs={post.faqs}
-      />
+      <FaqStructuredData url={getCanonicalLink(locale, `/articles/${slug}`)} faqs={post.faqs} />
     </>
   );
 }

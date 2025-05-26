@@ -14,9 +14,7 @@ export default function BouncingImages({ tkey }: { tkey: string }) {
 
   const [frontImage, setFrontImage] = useState(0);
   // Tracks the current animation stage: idle | scaleDown | scaleUp
-  const [swapStage, setSwapStage] = useState<"idle" | "scaleDown" | "scaleUp">(
-    "idle"
-  );
+  const [swapStage, setSwapStage] = useState<"idle" | "scaleDown" | "scaleUp">("idle");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -71,38 +69,26 @@ export default function BouncingImages({ tkey }: { tkey: string }) {
   };
 
   return (
-    <div className="relative flex items-start w-full mb-24">
+    <div className="relative flex items-start w-full mb-16">
       <div
         className={`
-          relative border-[6px] border-[#E7EEFF] mr-[-60px] rounded-2xl
+          relative border border-gray-200 mr-[-40px] sm:mr-[-60px] rounded-xl bg-white
           transition-all duration-300 overflow-hidden
           ${frontImage === 0 ? "z-10" : "z-0"} 
           ${image1Transforms()}
         `}
       >
-        <Image
-          src={t("images.1")}
-          alt={t("images.alt1")}
-          width={1200}
-          height={1303}
-          className="object-cover"
-        />
+        <Image src={t("images.1")} alt={t("images.alt1")} width={1200} height={1303} className="object-cover" />
       </div>
       <div
         className={`
-          relative border-[6px] border-[#E7EEFF] rounded-2xl
-          transition-all duration-300 top-[60px] overflow-hidden
+          relative border border-gray-200 rounded-xl bg-white
+          transition-all duration-300 top-[40px] sm:top-[60px] overflow-hidden
           ${frontImage === 1 ? "z-10" : "z-0"}
           ${image2Transforms()}
         `}
       >
-        <Image
-          src={t("images.2")}
-          alt={t("images.alt2")}
-          width={1200}
-          height={1303}
-          className="object-cover"
-        />
+        <Image src={t("images.2")} alt={t("images.alt2")} width={1200} height={1303} className="object-cover" />
       </div>
     </div>
   );
