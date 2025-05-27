@@ -10,35 +10,40 @@ image: https://assets.pimms.io/dashboard-links-screenshot-1.webp?v=6
 <Header />
 
 <Slide size="xs">
-  <Avatars />
+  @Avatars
+  
   <Hero>
-    <H1>Transforme chaque clic en <Primary>conversion</Primary>, puis en <Primary>décision</Primary></H1>
-    <Summary>Le seul outil capable d'identifier les liens qui génèrent de vraies conversions — là où les autres s'arrêtent aux clics.</Summary>
+    # Transforme chaque clic en **conversion**, puis en **décision**
+
+    @Summary Le seul outil capable d'identifier les liens qui génèrent de vraies conversions — là où les autres s'arrêtent aux clics.
   </Hero>
   <Centered>
-    <CtaButton><Fast /> Démarre gratuitement<HideOnMobile> avec 10 liens offerts</HideOnMobile></CtaButton>
-    <CtaBottomText>Pas de CB requise • Toujours gratuit</CtaBottomText>
+    @CtaButton <Fast /> Démarre gratuitement<HideOnMobile> avec 10 liens offerts</HideOnMobile>
+
+    @CtaBottomText Pas de CB requise • Toujours gratuit
   </Centered>
-  <ImageSlide />
+  @ImageSlide
 </Slide>
 
 <Slide variant="secondary" id="problem">
   <Centered>
-    <Label variant="problem">Le Problème</Label>
-    <H2>Sans PIMMS, tu perds des <Primary>conversions</Primary></H2>
+    @Label[variant="problem"] Le Problème
+    ## Sans PIMMS, tu perds des **conversions**
   </Centered>
   
   <Section variant="card">
     <TwoColumns ratio="2-1">
       <Column span={2} order="text">
-        <WithoutPimms />
-        <Text size="lg">
-          Chaque fois que tes contenus s'ouvrent dans un navigateur intégré sur mobile, l'expérience est cassée.
-        </Text>
+        @WithoutPimms
+
+        @Text[size="lg"] Chaque fois que tes contenus s'ouvrent dans un navigateur intégré sur mobile, l'expérience est cassée.
+        
         <List>
-          <Item variant="problem">**Les liens s'ouvrent dans un mini navigateur intégré**, pas dans les apps officielles</Item>
-          <Item variant="problem">**Les utilisateurs sont déconnectés**: profil sociaux inaccessibles, paiements en plus d'étapes...</Item>
-          <Item variant="problem">**Résultat, ils abandonnent à cause de frictions inutiles**.</Item>
+          @Item[variant="problem"] **Les liens s'ouvrent dans un mini navigateur intégré**, pas dans les apps officielles
+          
+          @Item[variant="problem"] **Les utilisateurs sont déconnectés**: profil sociaux inaccessibles, paiements en plus d'étapes...
+          
+          @Item[variant="problem"] **Résultat, ils abandonnent à cause de frictions inutiles**.
         </List>
       </Column>
       <Column span={1} order="visual">
@@ -48,33 +53,35 @@ image: https://assets.pimms.io/dashboard-links-screenshot-1.webp?v=6
   </Section>
   
   <Section variant="card">
-    <WithoutPimms />
-    <Text size="lg">
-      Tu perds des conversions si tu n'as pas activé le tracking des conversions sur tes liens.
-    </Text>
+    @WithoutPimms
+
+    @Text[size="lg"] Tu perds des conversions si tu n'as pas activé le tracking des conversions sur tes liens.
+    
     <List layout="horizontal">
-      <Item variant="problem">La plupart des outils de liens **suivent les clics, mais pas les conversions** (formulaires remplis, rendez-vous réservés, ventes…)</Item>
-      <Item variant="problem">**Tu ne sais pas ce qui marche vraiment** : quel lien apporte des résultats, quel canal, quelle campagne, quel post…</Item>
-      <Item variant="problem">Résultat, sans optimiser ton travail, **tu perds du temps et des conversions**.</Item>
+      @Item[variant="problem"] La plupart des outils de liens **suivent les clics, mais pas les conversions** (formulaires remplis, rendez-vous réservés, ventes…)
+      
+      @Item[variant="problem"] **Tu ne sais pas ce qui marche vraiment** : quel lien apporte des résultats, quel canal, quelle campagne, quel post…
+      
+      @Item[variant="problem"] Résultat, sans optimiser ton travail, **tu perds du temps et des conversions**.
     </List>
   </Section>
 </Slide>
 
 <Slide id="top-features">
   <Centered>
-    <Label variant="solution">La Solution</Label>
-    <H2>Avec PIMMS, tu convertis plus et tu sais exactement <Primary>pourquoi</Primary></H2>
-    <Text size="lg">Tes liens s'ouvrent directement dans les apps mobiles officielles. Tu réduis les frictions et tu suis la performance de chaque lien, chaque canal. Tu analyses les clics, les conversions, et les ventes.</Text>
+    @Label[variant="solution"] La Solution
+    ## Avec PIMMS, tu convertis plus et tu sais exactement **pourquoi**
+    @Text[size="lg"] Tes liens s'ouvrent directement dans les apps mobiles officielles. Tu réduis les frictions et tu suis la performance de chaque lien, chaque canal. Tu analyses les clics, les conversions, et les ventes.
   </Centered>
 
   <Section>
     <TwoColumns ratio="7-5">
       <Column span={7} order="visual">
-        <DeeplinkDemo />
+        @DeeplinkDemo
       </Column>
       <Column span={5} order="text">
-        <H3>Offre une expérience fluide, et sans friction</H3>
-        <Text>Tes liens s'ouvrent directement dans les apps mobiles officielles comme Youtube, Instagram, ou encore Safari et Chrome. C'est moins de frictions, plus d'engagement. Fini les pertes d'utilisateurs.</Text>
+        ### Offre une expérience fluide, et sans friction
+        @Text Tes liens s'ouvrent directement dans les apps mobiles officielles comme Youtube, Instagram, ou encore Safari et Chrome. C'est moins de frictions, plus d'engagement. Fini les pertes d'utilisateurs.
       </Column>
     </TwoColumns>
   </Section>
@@ -82,11 +89,11 @@ image: https://assets.pimms.io/dashboard-links-screenshot-1.webp?v=6
   <Section>
     <TwoColumns ratio="5-7">
       <Column span={5} order="text">
-        <H3>Découvre enfin ce qui génère des conversions</H3>
-        <Text>Visualise l'impact de chaque lien dans un dashboard, et relie chaque contenu, chaque action à un résultat concret (achat, inscription, etc.)</Text>
+        ### Découvre enfin ce qui génère des conversions
+        @Text Visualise l'impact de chaque lien dans un dashboard, et relie chaque contenu, chaque action à un résultat concret (achat, inscription, etc.)
       </Column>
       <Column span={7} order="visual">
-        <AnalyticsDemo />
+        @AnalyticsDemo
       </Column>
     </TwoColumns>
   </Section>
@@ -94,11 +101,11 @@ image: https://assets.pimms.io/dashboard-links-screenshot-1.webp?v=6
   <Section>
     <TwoColumns ratio="7-5">
       <Column span={7} order="visual">
-        <Referer />
+        @Referer
       </Column>
       <Column span={5} order="text">
-        <H3>Prends de meilleures décisions, plus vite</H3>
-        <Text>Grace aux données claires et en temps réel, tu sais exactement quoi ajuster, accélérer ou stopper pour maximiser tes conversions.</Text>
+        ### Prends de meilleures décisions, plus vite
+        @Text Grace aux données claires et en temps réel, tu sais exactement quoi ajuster, accélérer ou stopper pour maximiser tes conversions.
       </Column>
     </TwoColumns>
   </Section>
@@ -106,11 +113,11 @@ image: https://assets.pimms.io/dashboard-links-screenshot-1.webp?v=6
   <Section>
     <TwoColumns ratio="5-7">
       <Column span={5} order="text">
-        <H3>Améliore ce qui convertit, coupe le reste</H3>
-        <Text>Arrête d'agir à l'aveugle et mise sur ce qui fait grandir ton activité. Utilise les filtres détaillés par campagne UTM, source, pays, appareil, navigateur, canal...</Text>
+        ### Améliore ce qui convertit, coupe le reste
+        @Text Arrête d'agir à l'aveugle et mise sur ce qui fait grandir ton activité. Utilise les filtres détaillés par campagne UTM, source, pays, appareil, navigateur, canal...
       </Column>
       <Column span={7} order="visual">
-        <FilterFeature />
+        @FilterFeature
       </Column>
     </TwoColumns>
   </Section>
@@ -118,19 +125,19 @@ image: https://assets.pimms.io/dashboard-links-screenshot-1.webp?v=6
   <Section variant="card">
     <List layout="horizontal">
       <FeatureCard>
-        <IconBox icon="zap" />
-        <H4>Données en temps réel</H4>
-        <Text>Chaque clic, conversion, vente s'affiche en live pour pouvoir réagir vite.</Text>
+        @IconBox[icon="zap"]
+        #### Données en temps réel
+        @Text Chaque clic, conversion, vente s'affiche en live pour pouvoir réagir vite.
       </FeatureCard>
       <FeatureCard>
-        <IconBox icon="globe" />
-        <H4>Domaines personnalisés</H4>
-        <Text>Crée des liens courts professionnels et uniques avec ton propre nom de domaine.</Text>
+        @IconBox[icon="globe"]
+        #### Domaines personnalisés
+        @Text Crée des liens courts professionnels et uniques avec ton propre nom de domaine.
       </FeatureCard>
       <FeatureCard>
-        <IconBox icon="share" />
-        <H4>Dashboards partagés</H4>
-        <Text>Collabore en équipe pour suivre les perfs et prendre les bonnes décisions ensemble.</Text>
+        @IconBox[icon="share"]
+        #### Dashboards partagés
+        @Text Collabore en équipe pour suivre les perfs et prendre les bonnes décisions ensemble.
       </FeatureCard>
     </List>
   </Section>
@@ -138,35 +145,35 @@ image: https://assets.pimms.io/dashboard-links-screenshot-1.webp?v=6
 
 <Slide variant="secondary">
   <Centered>
-    <Label variant="none">Nos offres</Label>
-    <H2>Choisis le plan qui correspond à tes besoins</H2>
+    @Label[variant="none"] Nos offres
+    ## Choisis le plan qui correspond à tes besoins
   </Centered>
   
   <Section>
     <TwoColumns ratio="1-1">
       <Column span={1}>
-        <LifetimeOfferFree />
+        @LifetimeOfferFree
       </Column>
       <Column span={1}>
-        <LifetimeOfferPro />
+        @LifetimeOfferPro
       </Column>
     </TwoColumns>
   </Section>
   
   <Section>
-    <LifetimeOfferBusiness />
+    @LifetimeOfferBusiness
   </Section>
 </Slide>
 
 <Slide variant="secondary" size="sm" spacing="bottom" noPadding>
-  <LogosCircle />
+  @LogosCircle
 </Slide>
 
 <Slide>
   <Centered>
-    <Label variant="none">FAQ</Label>
-    <H2>Questions fréquentes</H2>
-    <Text size="lg">Tout ce que tu dois savoir sur PIMMS</Text>
+    @Label[variant="none"] FAQ
+    ## Questions fréquentes
+    @Text[size="lg"] Tout ce que tu dois savoir sur PIMMS
   </Centered>
   
   <Section>
@@ -228,16 +235,16 @@ Absolument ! Tu peux passer du plan gratuit au Pro à tout moment. L'offre à vi
   <Section variant="card">
     <TwoColumns ratio="1-1">
       <Column span={1} order="text">
-        <H2 align="left">Accès à PIMMS</H2>
-        <Text size="lg">Teste PIMMS gratuitement et découvre comment rediriger mieux vers tes contenus, convertir plus et suivre enfin ce qui marche vraiment.</Text>
-        <CtaButton><Fast /> Démarre gratuitement</CtaButton>
-        <CtaBottomText>Pas de CB requise • Juste plus de conversions</CtaBottomText>
+        @H2[align="left"] Accès à PIMMS
+        @Text[size="lg"] Teste PIMMS gratuitement et découvre comment rediriger mieux vers tes contenus, convertir plus et suivre enfin ce qui marche vraiment.
+        @CtaButton <Fast /> Démarre gratuitement
+        @CtaBottomText Pas de CB requise • Juste plus de conversions
       </Column>
       <Column span={1} order="visual">
-        <BouncingImages />
+        @BouncingImages
       </Column>
     </TwoColumns>
   </Section>
 </Slide>
 
-<Footer /> 
+@Footer 

@@ -11,6 +11,7 @@ import { remarkIframeDirective } from "@/lib/mdx/remarkIframeDirective";
 import { remarkFaqDirective } from "@/lib/mdx/remarkFaqDirective";
 import { remarkCtaPlaceholder } from "@/lib/mdx/remarkCtaDirective";
 import { remarkCustomDirectives } from "@/lib/mdx/remarkCustomDirectives";
+import { remarkAtSyntax } from "@/lib/mdx/remark-at-syntax";
 import { generateLandingMetadata } from "@/lib/utils";
 import { landingFolders } from "@/i18n/config";
 import { Zap } from "lucide-react";
@@ -168,6 +169,13 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
       Features,
       CTA,
 
+      // Map markdown elements to custom components
+      h1: H1,
+      h2: H2,
+      h3: H3,
+      h4: H4,
+      p: Text,
+
       // MDX components
       CallToAction,
       Faq,
@@ -222,6 +230,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
             remarkPlugins: [
               remarkGfm,
               remarkDirective,
+              remarkAtSyntax,
               remarkIframeDirective,
               remarkFaqDirective,
               remarkCtaPlaceholder,
