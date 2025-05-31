@@ -2,37 +2,37 @@ export const pathnames: Record<string, Record<string, string>> = {
   "/": {
     "en": "/",
     "fr": "/",
-    "lastmod": "2025-05-27T14:05:14.322Z"
+    "lastmod": "2025-05-31T17:32:38.321Z"
   },
   "/landings/home": {
     "en": "/",
     "fr": "/",
-    "lastmod": "2025-05-27T14:05:14.322Z"
+    "lastmod": "2025-05-31T17:32:38.322Z"
   },
   "/landings/youtube": {
     "en": "/solutions/deep-links-youtube-channel",
     "fr": "/solutions/deep-links-chaine-youtube",
-    "lastmod": "2025-05-27T14:05:14.322Z"
+    "lastmod": "2025-05-31T17:32:38.322Z"
   },
   "/landings/amazon": {
     "en": "/solutions/deep-links-amazon",
     "fr": "/solutions/deep-links-amazon",
-    "lastmod": "2025-05-27T14:05:14.322Z"
+    "lastmod": "2025-05-31T17:32:38.322Z"
   },
   "/freetools/site-checker": {
     "en": "/freetools/pimms-tracking-site-checker-install",
     "fr": "/freetools/pimms-tracking-site-checker-installation",
-    "lastmod": "2025-05-27T14:05:14.322Z"
+    "lastmod": "2025-05-31T17:32:38.322Z"
   },
   "/articles": {
     "en": "/articles",
     "fr": "/articles",
-    "lastmod": "2025-05-27T00:00:00.000Z"
+    "lastmod": "2025-05-31T00:00:00.000Z"
   },
   "/articles/category/digital-marketing": {
     "en": "/blog/marketing",
     "fr": "/blog/marketing",
-    "lastmod": "2025-05-27T00:00:00.000Z"
+    "lastmod": "2025-05-31T00:00:00.000Z"
   },
   "/articles/category/legal": {
     "en": "/legal",
@@ -47,7 +47,7 @@ export const pathnames: Record<string, Record<string, string>> = {
   "/articles/author/emma": {
     "en": "/articles/author/emma",
     "fr": "/articles/auteur/emma",
-    "lastmod": "2025-05-27T00:00:00.000Z"
+    "lastmod": "2025-05-31T00:00:00.000Z"
   },
   "/articles/category/guides": {
     "en": "/guides",
@@ -108,6 +108,10 @@ export const pathnames: Record<string, Record<string, string>> = {
     "lastmod": "2025-05-03T00:00:00.000Z",
     "fr": "/blog/comment-les-deep-links-ameliorent-les-parcours-de-conversion"
   },
+  "/articles/how-do-i-add-analytics-to-an-ai-generated-app-or-prompt-based-build": {
+    "en": "/blog/how-do-i-add-analytics-to-an-ai-generated-app-or-prompt-based-build",
+    "lastmod": "2025-05-31T00:00:00.000Z"
+  },
   "/articles/how-to-add-analytics-to-vibe-coded-app": {
     "en": "/blog/how-to-add-analytics-to-vibe-coded-app",
     "lastmod": "2025-05-23T00:00:00.000Z"
@@ -145,7 +149,11 @@ export const pathnames: Record<string, Record<string, string>> = {
   },
   "/articles/is-bitly-good-for-conversion-tracking": {
     "en": "/blog/is-bitly-good-for-conversion-tracking",
-    "lastmod": "2025-05-26T00:00:00.000Z"
+    "lastmod": "2025-05-31T00:00:00.000Z"
+  },
+  "/articles/prompt-templates-how-to-track-conversions-in-ai-generated-apps-nextjs-framer-etc": {
+    "en": "/blog/prompt-templates-how-to-track-conversions-in-ai-generated-apps-nextjs-framer-etc",
+    "lastmod": "2025-05-31T00:00:00.000Z"
   },
   "/articles/referrer-vs-utm-vs-fingerprinting-what-really-tells-you-where-a-click-came-from": {
     "en": "/blog/referrer-vs-utm-vs-fingerprinting-where-a-click-came-from",
@@ -201,9 +209,17 @@ export const pathnames: Record<string, Record<string, string>> = {
     "en": "/blog/what-are-the-best-marketing-attribution-tools-for-startups",
     "lastmod": "2025-05-27T00:00:00.000Z"
   },
+  "/articles/what-tools-should-i-use-to-track-users-and-conversions-in-my-mvp": {
+    "en": "/blog/what-tools-should-i-use-to-track-users-and-conversions-in-my-mvp",
+    "lastmod": "2025-05-27T00:00:00.000Z"
+  },
   "/articles/whats-the-best-way-to-track-stripe-sales-and-subscriptions": {
     "en": "/blog/whats-the-best-way-to-track-stripe-sales-and-subscriptions",
     "lastmod": "2025-05-26T00:00:00.000Z"
+  },
+  "/articles/whats-the-easiest-way-to-set-up-link-tracking-with-attribution": {
+    "en": "/blog/whats-the-easiest-way-to-set-up-link-tracking-with-attribution",
+    "lastmod": "2025-05-27T00:00:00.000Z"
   },
   "/articles/how-to-track-calendly": {
     "en": "/guides/how-to-track-calendly-bookings-marketing-attribution",
